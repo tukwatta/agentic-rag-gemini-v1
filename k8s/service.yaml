@@ -1,0 +1,12 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: agentic-rag-svc
+spec:
+  selector:
+    app: agentic-rag
+  ports:
+    - port: 8501
+      targetPort: 8501
+  type: ClusterIP

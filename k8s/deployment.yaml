@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agentic-rag
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agentic-rag
+  template:
+    metadata:
+      labels:
+        app: agentic-rag
+    spec:
+      containers:
+        - name: agentic-rag
+          image: 387041334966.dkr.ecr.ca-central-1.amazonaws.com/agentic-rag:latest
+          imagePullPolicy: Always   # use the locally-loaded image, don't try to pull from a registry
+          ports:
+            - containerPort: 8501
+          envFrom:
+            - secretRef:
+                name: gemini-secret
